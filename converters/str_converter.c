@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/19 18:16:21 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/20 18:52:41 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,22 @@ char			*str_converter(t_specs specs, char *str)
 	int		width;
 	int		padding;
 	int		index;
+	int		len_str;
 
 	if (!str)
 		return (ft_strdup("(null)"));
 	filler = (specs.zero_pad ? '0' : ' ');
 	filler = (specs.right_pad ? ' ' : filler);
-	padding = specs.min_f_width - ft_strlen(str);
-	width = (padding < 0 ? ft_strlen(str) : specs.min_f_width);
-	width = specs.precision < 0 ? width : specs.precision;
+	len_str = specs.precision < ft_strlen(str) ? specs.precision : ft_strlen(str);
+	padding = specs.min_f_width - len_str;
+	width = (padding < 0 ? len_str : specs.min_f_width);
 	my_str = malloc(sizeof(*my_str) * (width + 1));
 	if (!my_str)
 		return (NULL);
 	index = 0;
 	if (specs.right_pad)
 	{
-		while (str[index])
+		while (str[index] && index < len_str)
 		{
 			my_str[index] = str[index];
 			index++;
@@ -67,19 +68,9 @@ char			*str_converter(t_specs specs, char *str)
 		while (padding-- > 0)
 			my_str[index++] = filler;
 		padding = 0;
-		while (str[padding])
+		while (str[padding] && padding < len_str)
 			my_str[index++] = str[padding++];
 	}
 	my_str[index] = 0;
-	/*if (specs.right_pad)
-	  {
-	  my_char[0] = con_c;
-	  fill_my_char(&my_char, c, min_width, specs.right_pad);
-	  }
-	  else
-	  {
-	  my_char[(min_width--)] = con_c;
-	  fill_my_char(&my_char, c, min_width, specs.right_pad);
-	  }*/
 	return (my_str);
 }
