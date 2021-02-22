@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:12:18 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/22 16:26:10 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/22 23:26:31 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef	struct		s_specs
 
 char				*char_converter(t_specs specs, int c);
 char				*str_converter(t_specs specs, char *str);
+int					converting_function(t_specs specs, va_list *arguments,
+											char **dest);
 int					is_format(char c);
 int					string_writer(char **dest, char *to_add);
 t_specs				conversion_parser(char **string, va_list *arguments);
