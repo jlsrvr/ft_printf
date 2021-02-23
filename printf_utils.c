@@ -6,13 +6,13 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 16:09:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/22 16:28:03 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/23 11:21:44 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*g_formats = "cspdiuxX%";
+char	*g_formats = "%spcdiuxX";
 
 t_specs	initialize_specs(void)
 {
@@ -35,7 +35,7 @@ int		is_format(char c)
 	while (g_formats[index])
 	{
 		if (g_formats[index++] == c)
-			return (1);
+			return (index);
 	}
 	return (0);
 }
