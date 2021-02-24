@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:21:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/23 11:36:31 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/24 15:14:22 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	converting_function(t_specs specs, va_list *arguments, char **dest)
 	{
 		if (specs.format == '%')
 			converted = (*g_converters[0])(specs, '%');
+		else if (specs.format == 'p')
+			converted = ptn_converter(specs, va_arg(*arguments, uintmax_t));
 		else
 			converted = str_converter(specs, va_arg(*arguments, char *));
 	}
