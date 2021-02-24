@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 16:09:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/23 11:21:44 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:52:30 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,19 @@ int		is_format(char c)
 			return (index);
 	}
 	return (0);
+}
+
+char	filler(t_specs specs)
+{
+	char filler;
+
+	filler = (specs.zero_pad ? '0' : ' ');
+	filler = (specs.right_pad ? ' ' : filler);
+	return (filler);
+}
+
+char	*oneline_free(char *to_free)
+{
+	free(to_free);
+	return (NULL);
 }

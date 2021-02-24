@@ -6,20 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/21 14:27:03 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:55:19 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-char			filler(t_specs specs)
-{
-	char filler;
-
-	filler = (specs.zero_pad ? '0' : ' ');
-	filler = (specs.right_pad ? ' ' : filler);
-	return (filler);
-}
 
 static void		calculate_len_str(t_specs specs, char *str, int *len_str)
 {
