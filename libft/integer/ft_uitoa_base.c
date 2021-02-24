@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 11:27:16 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/23 19:13:18 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/24 10:53:28 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,13 @@ static int		check_base(char *base)
 	return (1);
 }
 
-static	size_t	len_num(long int n)
+static	size_t	len_num(uintmax_t nbr)
 {
 	size_t				len;
-	unsigned long int	nbr;
 
 	len = 0;
-	if (n == 0)
+	if (nbr == 0)
 		return (1);
-	if (n < 0)
-	{
-		len++;
-		nbr = -n;
-	}
-	else
-		nbr = n;
 	while (nbr > 9)
 	{
 		len++;
@@ -57,7 +49,7 @@ static	size_t	len_num(long int n)
 	return (len + 1);
 }
 
-static	void	store_num(unsigned long int nbr, char *num,
+static	void	store_num(uintmax_t nbr, char *num,
 							size_t *index, char *base)
 {
 	size_t basetype;
@@ -74,11 +66,10 @@ static	void	store_num(unsigned long int nbr, char *num,
 	return ;
 }
 
-char			*ft_itoa_base(long int n, char *base)
+char			*ft_uitoa_base(uintmax_t n, char *base)
 {
 	char				*num;
 	size_t				index;
-	unsigned long int	nbr;
 	size_t				basetype;
 
 	num = NULL;
@@ -88,14 +79,7 @@ char			*ft_itoa_base(long int n, char *base)
 		if (!(num = malloc(sizeof(*num) * (len_num(n) + 1))))
 			return (NULL);
 		index = 0;
-		if (n < 0)
-		{
-			num[index++] = '-';
-			nbr = -n;
-		}
-		else
-			nbr = n;
-		store_num(nbr, num, &index, base);
+		store_num(n, num, &index, base);
 	}
 	return (num);
 }

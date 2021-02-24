@@ -6,7 +6,7 @@
 #    By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/15 15:24:55 by jrivoire          #+#    #+#              #
-#    Updated: 2021/02/23 16:55:31 by jrivoire         ###   ########.fr        #
+#    Updated: 2021/02/24 10:55:39 by jrivoire         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS			= 	char/ft_isalnum.c \
 					display/ft_putnbr_fd.c \
 					display/ft_putstr_fd.c \
 					integer/ft_itoa.c \
-					integer/ft_itoa_base.c \
+					integer/ft_uitoa_base.c \
 					list/ft_lstadd_back.c \
 					list/ft_lstadd_front.c \
 					list/ft_lstclear.c \
