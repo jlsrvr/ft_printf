@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:06:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/24 14:39:54 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/24 14:45:04 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,25 @@ char	*fill_end(t_specs specs, size_t len_hexa)
 
 char	*ptn_converter(t_specs specs, uintmax_t ptn)
 {
-	char	*hexa_trans;
+	char	*temp;
 	char	*my_string;
 	size_t	hexa_len;
 
 	if (ptn == 0 && specs.precision == 0)
-		hexa_trans = ft_strdup("");
+		temp = ft_strdup("");
 	else
-		hexa_trans = ft_uitoa_base(ptn, g_hexa_base);
-	if (!hexa_trans)
+		temp = ft_uitoa_base(ptn, g_hexa_base);
+	if (!temp)
 		return (NULL);
-	hexa_len = ft_strlen(hexa_trans);
+	hexa_len = ft_strlen(temp);
 	my_string = fill_start(specs, hexa_len);
-	string_writer(&my_string, hexa_trans);
-	string_writer(&my_string, fill_end(specs, hexa_len));
+	string_writer(&my_string, temp);
+	temp = fill_end(specs, hexa_len);
+	if (!temp)
+	{
+		free(my_string);
+		return (NULL);
+	}
+	string_writer(&my_string, temp);
 	return (my_string);
 }
