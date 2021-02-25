@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:24:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 13:54:14 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 14:35:50 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,80 @@
 
 char	*g_base_10 = "0123456789";
 
+char	*fill_start_precision(t_specs specs, size_t len_num, char *str)
+{
+	int		size;
+	char	*temp;
+
+	if (specs.precision == -1)
+		return (str);
+	size = specs.precision - len_num;
+	if (size > 0)
+	{
+		temp = malloc(sizeof(*temp) * (size + 1));
+		if (!temp)
+			return (oneline_free(str));
+		temp[size] = 0;
+		while (--size >= 0)
+			temp[size] = '0';
+		if (!string_writer(&str, temp))
+			return (NULL);
+	}
+	size = specs.min_f_width - len_num - ft_strlen(str);
+	if (size > 0 && !specs.right_pad)
+	{
+		temp = malloc(sizeof(*temp) * (size + 1));
+		if (!temp)
+			return (oneline_free(str));
+		temp[size] = 0;
+		while (--size >= 0)
+			temp[size] = filler(specs);
+		if (!string_writer(&temp, str))
+			return (NULL);
+		return (temp);
+	}
+	return (str);
+}
+
+char	*fill_start_no_precision(t_specs specs, size_t len_num, char *str)
+{
+	int		size;
+	char	*temp;
+
+	size = specs.min_f_width - len_num - ft_strlen(str);
+	if (size > 0 && !specs.right_pad)
+	{
+		temp = malloc(sizeof(*temp) * (size + 1));
+		if (!temp)
+			return (oneline_free(str));
+		temp[size] = 0;
+		if (specs.zero_pad)
+		{
+			while (--size >= 0)
+				temp[size] = filler(specs);
+			if (!string_writer(&str, temp))
+				return (NULL);
+		}
+		else
+		{
+			while (--size >= 0)
+				temp[size] = filler(specs);
+			if (!string_writer(&temp, str))
+				return (NULL);
+			return (temp);
+		}
+	}
+	return (str);
+}
+
 char	*fill_start(t_specs specs, size_t len_num, int neg)
 {
 	char *str;
-	char *temp;
-	int size;
 
-	if (specs.precision != -1)
-	{
-		size = specs.precision - len_num;
-		str = (neg ? ft_strdup("-") : ft_strdup(""));
-		if (size > 0)
-		{
-			temp = malloc(sizeof(*temp) * (size + 1));
-			if (!temp)
-				return (oneline_free(str));
-			temp[size] = 0;
-			while (--size >= 0)
-				temp[size] = '0';
-			string_writer(&str, temp);
-		}
-		size = specs.min_f_width - len_num - ft_strlen(str);
-		if (size > 0 && !specs.right_pad)
-		{
-			temp = malloc(sizeof(*temp) * (size + 1));
-			if (!temp)
-				return (oneline_free(str));
-			temp[size] = 0;
-			while (--size >= 0)
-				temp[size] = ' ';
-			string_writer(&temp, str);
-			return (temp);
-		}
-		return (str);
-	}
-	else
-	{
-		str = (neg ? ft_strdup("-") : ft_strdup(""));
-		size = specs.min_f_width - len_num - ft_strlen(str);
-		if (size > 0 && !specs.right_pad)
-		{
-			temp = malloc(sizeof(*temp) * (size + 1));
-			if (!temp)
-				return (oneline_free(str));
-			temp[size] = 0;
-			if (specs.zero_pad)
-			{
-				while (--size >= 0)
-					temp[size] = filler(specs);
-				string_writer(&str, temp);
-			}
-			else
-			{
-				while (--size >= 0)
-					temp[size] = filler(specs);
-				string_writer(&temp, str);
-				return (temp);
-			}
-		}
-		return (str);
-	}
+	str = (neg ? ft_strdup("-") : ft_strdup(""));
+	str = fill_start_precision(specs, len_num, str);
+	str = fill_start_no_precision(specs, len_num, str);
+	return (str);
 }
 
 char	*fill_end(t_specs specs, size_t len_int)
@@ -111,12 +125,12 @@ char	*int_converter(t_specs specs, int nbr)
 	my_string = fill_start(specs, ft_strlen(temp_str), neg);
 	if (!my_string)
 		return (oneline_free(temp_str));
-	string_writer(&my_string, temp_str);
-	if (!my_string)
+	if (!string_writer(&my_string, temp_str))
 		return (NULL);
 	temp_str = fill_end(specs, ft_strlen(my_string));
 	if (!temp_str)
 		return (oneline_free(my_string));
-	string_writer(&my_string, temp_str);
+	if (!string_writer(&my_string, temp_str))
+		return (NULL);
 	return (my_string);
 }
