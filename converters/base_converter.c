@@ -6,13 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:24:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 15:15:05 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:28:30 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-char	*g_base_10 = "0123456789";
 
 void	fill_temp(char **temp, int size, char filler)
 {
@@ -91,19 +89,19 @@ char	*fill_start(t_specs specs, size_t len_num, int neg)
 	return (str);
 }
 
-char	*int_converter(t_specs specs, int nbr)
+char	*base_converter(t_specs specs, intmax_t nbr, char *base)
 {
-	unsigned int	n;
+	uintmax_t		n;
 	char			*my_string;
 	char			*temp_str;
 	int				neg;
 
-	neg = (nbr < 0) ? 1 : 0;
-	n = neg ? -nbr : nbr;
+	neg = ((nbr < 0) ? 1 : 0);
+	n = (neg ? -nbr : nbr);
 	if (n == 0 && specs.precision == 0)
 		temp_str = ft_strdup("");
 	else
-		temp_str = ft_uitoa_base(n, g_base_10);
+		temp_str = ft_uitoa_base(n, base);
 	if (!temp_str)
 		return (NULL);
 	my_string = fill_start(specs, ft_strlen(temp_str), neg);
