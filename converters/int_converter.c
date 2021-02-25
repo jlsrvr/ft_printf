@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:24:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 14:35:50 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 14:37:45 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,15 @@ char	*fill_start_no_precision(t_specs specs, size_t len_num, char *str)
 		if (!temp)
 			return (oneline_free(str));
 		temp[size] = 0;
+		while (--size >= 0)
+			temp[size] = filler(specs);
 		if (specs.zero_pad)
 		{
-			while (--size >= 0)
-				temp[size] = filler(specs);
 			if (!string_writer(&str, temp))
 				return (NULL);
 		}
 		else
 		{
-			while (--size >= 0)
-				temp[size] = filler(specs);
 			if (!string_writer(&temp, str))
 				return (NULL);
 			return (temp);
