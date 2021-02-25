@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:12:18 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 20:26:50 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 23:10:21 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef	struct		s_specs
 char				*char_converter(t_specs specs, int c);
 char				*fill_end(t_specs specs, size_t len_str);
 char				*base_converter(t_specs specs, intmax_t c, char *base);
+char				*hexa_converter(t_specs specs, int c);
 char				*oneline_free(char *to_free);
 char				*ptn_converter(t_specs specs, uintmax_t c);
 char				*signed_converter(t_specs specs, int c);
