@@ -6,15 +6,15 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:06:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/24 15:01:36 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:18:36 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*g_hexa_base = "0123456789abcdef";
+char		*g_hexa_base = "0123456789abcdef";
 
-char	*fill_start(t_specs specs, size_t len_hexa)
+static char	*fill_start(t_specs specs, size_t len_hexa)
 {
 	char	*str;
 	char	*add_on;
@@ -41,24 +41,7 @@ char	*fill_start(t_specs specs, size_t len_hexa)
 	return (str);
 }
 
-char	*fill_end(t_specs specs, size_t len_hexa)
-{
-	char	*str;
-	int		padding;
-
-	padding = specs.min_f_width - (len_hexa + 2);
-	if (padding < 0 || !specs.right_pad)
-		return (ft_strdup(""));
-	str = malloc(sizeof(*str) * (padding + 1));
-	if (!str)
-		return (NULL);
-	str[padding] = 0;
-	while (--padding >= 0)
-		str[padding] = ' ';
-	return (str);
-}
-
-char	*ptn_converter(t_specs specs, uintmax_t ptn)
+char		*ptn_converter(t_specs specs, uintmax_t ptn)
 {
 	char	*temp;
 	char	*my_string;
@@ -77,7 +60,7 @@ char	*ptn_converter(t_specs specs, uintmax_t ptn)
 	string_writer(&my_string, temp);
 	if (!my_string)
 		return (NULL);
-	temp = fill_end(specs, hexa_len);
+	temp = fill_end(specs, (hexa_len + 2));
 	if (!temp)
 		return (oneline_free(my_string));
 	string_writer(&my_string, temp);

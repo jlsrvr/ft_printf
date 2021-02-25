@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 16:09:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 11:37:00 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:15:52 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,21 @@ char	*oneline_free(char *to_free)
 {
 	free(to_free);
 	return (NULL);
+}
+
+char	*fill_end(t_specs specs, size_t len_int)
+{
+	char	*str;
+	int		padding;
+
+	padding = specs.min_f_width - len_int;
+	if (padding < 0 || !specs.right_pad)
+		return (ft_strdup(""));
+	str = malloc(sizeof(*str) * (padding + 1));
+	if (!str)
+		return (NULL);
+	str[padding] = 0;
+	while (--padding >= 0)
+		str[padding] = ' ';
+	return (str);
 }
