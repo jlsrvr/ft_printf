@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:24:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 14:37:45 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:15:05 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 char	*g_base_10 = "0123456789";
 
+void	fill_temp(char **temp, int size, char filler)
+{
+	(*temp)[size] = 0;
+	while (--size >= 0)
+		(*temp)[size] = filler;
+}
+
 char	*fill_start_precision(t_specs specs, size_t len_num, char *str)
 {
 	int		size;
 	char	*temp;
 
-	if (specs.precision == -1)
-		return (str);
 	size = specs.precision - len_num;
 	if (size > 0)
 	{
 		temp = malloc(sizeof(*temp) * (size + 1));
 		if (!temp)
 			return (oneline_free(str));
-		temp[size] = 0;
-		while (--size >= 0)
-			temp[size] = '0';
+		fill_temp(&temp, size, '0');
 		if (!string_writer(&str, temp))
 			return (NULL);
 	}
@@ -39,9 +42,7 @@ char	*fill_start_precision(t_specs specs, size_t len_num, char *str)
 		temp = malloc(sizeof(*temp) * (size + 1));
 		if (!temp)
 			return (oneline_free(str));
-		temp[size] = 0;
-		while (--size >= 0)
-			temp[size] = filler(specs);
+		fill_temp(&temp, size, filler(specs));
 		if (!string_writer(&temp, str))
 			return (NULL);
 		return (temp);
@@ -83,25 +84,10 @@ char	*fill_start(t_specs specs, size_t len_num, int neg)
 	char *str;
 
 	str = (neg ? ft_strdup("-") : ft_strdup(""));
-	str = fill_start_precision(specs, len_num, str);
-	str = fill_start_no_precision(specs, len_num, str);
-	return (str);
-}
-
-char	*fill_end(t_specs specs, size_t len_int)
-{
-	char	*str;
-	int		padding;
-
-	padding = specs.min_f_width - len_int;
-	if (padding < 0 || !specs.right_pad)
-		return (ft_strdup(""));
-	str = malloc(sizeof(*str) * (padding + 1));
-	if (!str)
-		return (NULL);
-	str[padding] = 0;
-	while (--padding >= 0)
-		str[padding] = ' ';
+	if (specs.precision != -1)
+		str = fill_start_precision(specs, len_num, str);
+	else
+		str = fill_start_no_precision(specs, len_num, str);
 	return (str);
 }
 
