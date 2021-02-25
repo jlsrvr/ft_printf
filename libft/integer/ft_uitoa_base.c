@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 11:27:16 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/24 10:53:28 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 16:14:35 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ static	void	store_num(uintmax_t nbr, char *num,
 		num[(*index)++] = base[nbr];
 	else
 	{
-		store_num((long int)(nbr / basetype), num, index, base);
-		store_num((long int)(nbr % basetype), num, index, base);
+		store_num((nbr / basetype), num, index, base);
+		store_num((nbr % basetype), num, index, base);
 	}
 	num[*index] = 0;
 	return ;
