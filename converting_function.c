@@ -6,13 +6,15 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:21:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/24 15:14:22 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 23:24:03 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char *(*g_converters[7])(t_specs specs, int number) = {char_converter/*, dec_converter, int_converter, un_int_converter, hexa_converter, u_hexa_converter*/};
+char *(*g_converters[7])(t_specs specs, int number) = {char_converter,
+	signed_converter, signed_converter, unsigned_converter,
+	hexa_converter, hexa_converter};
 
 int	converting_function(t_specs specs, va_list *arguments, char **dest)
 {
@@ -38,4 +40,3 @@ int	converting_function(t_specs specs, va_list *arguments, char **dest)
 	string_writer(dest, converted);
 	return (1);
 }
-
