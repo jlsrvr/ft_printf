@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 16:09:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 15:15:52 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 19:54:40 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ char	filler(t_specs specs)
 	char zero;
 
 	zero = '0';
-	if (specs.format == 'i')
-	{
-		if (specs.precision != -1)
-			zero = ' ';
-	}
+	if (specs.precision != -1)
+		zero = ' ';
+	if (specs.format == 's' || specs.format == 'p' || specs.format == 'c')
+		zero = '0';
 	filler = (specs.zero_pad ? zero : ' ');
 	filler = (specs.right_pad ? ' ' : filler);
 	return (filler);
