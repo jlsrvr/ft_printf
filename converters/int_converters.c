@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:38:47 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 20:05:17 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/25 20:26:03 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,12 @@ char	*unsigned_converter(t_specs specs, int c)
 	base10 = "0123456789";
 	u_int = (unsigned int)c;
 	return (base_converter(specs, u_int, base10));
+}
+
+char	*signed_converter(t_specs specs, int c)
+{
+	char			*base10;
+
+	base10 = "0123456789";
+	return (base_converter(specs, c, base10));
 }
