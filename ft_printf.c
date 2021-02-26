@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 23:26:29 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 11:28:35 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 12:06:57 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ int ft_printf(const char *str, ...)
 	string = ft_strdup(str);
 	if (!string)
 		return (0);
+	dest = ft_strdup("");
+	if (!dest)
+	{
+		free(string);
+		return (0);
+	}
 	va_start(arguments, str);
 	string_parser(&string, &arguments, &dest);
 	va_end(arguments);
