@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:06:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 15:18:36 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 16:40:19 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,103 @@
 
 char		*g_hexa_base = "0123456789abcdef";
 
-static char	*fill_start(t_specs specs, size_t len_hexa)
+static void	fill_temp(char **temp, int size, char filler)
 {
-	char	*str;
-	char	*add_on;
-	int		padding;
+	(*temp)[size] = 0;
+	while (--size >= 0)
+		(*temp)[size] = filler;
+}
 
-	add_on = ft_strdup("0x");
-	if (!add_on)
-		return (NULL);
-	padding = specs.min_f_width - (len_hexa + 2);
-	if (padding < 0 || specs.right_pad)
-		return (add_on);
-	str = malloc(sizeof(*str) * (padding + 1));
-	if (!str)
-		return (oneline_free(add_on));
-	str[padding] = 0;
-	while (--padding >= 0)
-		str[padding] = filler(specs);
-	if (specs.zero_pad)
+static char	*fill_start_precision(t_specs specs, size_t len_num, char *str)
+{
+	int		size;
+	char	*temp;
+
+	size = specs.precision - len_num;
+	if (size > 0)
 	{
-		string_writer(&add_on, str);
-		return (add_on);
+		temp = malloc(sizeof(*temp) * (size + 1));
+		if (!temp)
+			return (oneline_free(str));
+		fill_temp(&temp, size, '0');
+		if (!string_writer(&str, temp))
+			return (NULL);
 	}
-	string_writer(&str, add_on);
+	size = specs.min_f_width - len_num - ft_strlen(str);
+	if (size > 0 && !specs.right_pad)
+	{
+		temp = malloc(sizeof(*temp) * (size + 1));
+		if (!temp)
+			return (oneline_free(str));
+		fill_temp(&temp, size, filler(specs));
+		if (!string_writer(&temp, str))
+			return (NULL);
+		return (temp);
+	}
 	return (str);
 }
 
-char		*ptn_converter(t_specs specs, uintmax_t ptn)
+static char	*fill_start_no_precision(t_specs specs, size_t len_num, char *str)
 {
+	int		size;
 	char	*temp;
-	char	*my_string;
-	size_t	hexa_len;
 
-	if (ptn == 0 && specs.precision == 0)
-		temp = ft_strdup("");
+	size = specs.min_f_width - len_num - ft_strlen(str);
+	if (size > 0 && !specs.right_pad)
+	{
+		temp = malloc(sizeof(*temp) * (size + 1));
+		if (!temp)
+			return (oneline_free(str));
+		temp[size] = 0;
+		while (--size >= 0)
+			temp[size] = filler(specs);
+		if (specs.zero_pad)
+		{
+			if (!string_writer(&str, temp))
+				return (NULL);
+		}
+		else
+		{
+			if (!string_writer(&temp, str))
+				return (NULL);
+			return (temp);
+		}
+	}
+	return (str);
+}
+
+static char	*fill_start(t_specs specs, size_t len_num)
+{
+	char *str;
+
+	str = ft_strdup("0x");
+	if (specs.precision != -1)
+		str = fill_start_precision(specs, len_num, str);
 	else
-		temp = ft_uitoa_base(ptn, g_hexa_base);
-	if (!temp)
+		str = fill_start_no_precision(specs, len_num, str);
+	return (str);
+}
+
+char		*ptn_converter(t_specs specs, uintmax_t nbr)
+{
+	char			*my_string;
+	char			*temp_str;
+
+	if (nbr == 0 && specs.precision == 0)
+		temp_str = ft_strdup("");
+	else
+		temp_str = ft_uitoa_base(nbr, g_hexa_base);
+	if (!temp_str)
 		return (NULL);
-	hexa_len = ft_strlen(temp);
-	my_string = fill_start(specs, hexa_len);
+	my_string = fill_start(specs, ft_strlen(temp_str));
 	if (!my_string)
-		return (oneline_free(temp));
-	string_writer(&my_string, temp);
-	if (!my_string)
+		return (oneline_free(temp_str));
+	if (!string_writer(&my_string, temp_str))
 		return (NULL);
-	temp = fill_end(specs, (hexa_len + 2));
-	if (!temp)
+	temp_str = fill_end(specs, ft_strlen(my_string));
+	if (!temp_str)
 		return (oneline_free(my_string));
-	string_writer(&my_string, temp);
+	if (!string_writer(&my_string, temp_str))
+		return (NULL);
 	return (my_string);
 }
