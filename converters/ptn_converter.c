@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:06:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 18:45:55 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 19:29:35 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,11 @@ void		ptn_converter(t_specs specs, uintmax_t nbr, int *count)
 		temp_str = ft_uitoa_base(nbr, g_hexa_base);
 	if (!temp_str)
 		return ;
-	my_string = fill_start(specs, ft_strlen(temp_str));
-	if (!my_string)
-	{
-		free(temp_str);
-		return ;
-	}
+	if (!(my_string = fill_start(specs, ft_strlen(temp_str))))
+		return (free(temp_str));
 	if (!string_writer(&my_string, temp_str))
 		return ;
-	temp_str = fill_end(specs, ft_strlen(my_string));
-	if (!temp_str)
+	if (!(temp_str = fill_end(specs, ft_strlen(my_string))))
 	{
 		free(my_string);
 		return ;
