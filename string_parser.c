@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 13:40:52 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/23 14:40:12 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 11:18:47 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 int	string_parser(char **string, va_list *arguments, char **dest)
 {
 	char	*temp;
+	char	*to_free;
 	t_specs specs;
 
 	if (!ft_strchr(*string, '%'))
-		return (string_writer(dest, ft_strdup(*string)));
+		return (string_writer(dest, *string));
+	to_free = *string;
 	while (**string)
 	{
 		if (**string == '%')
@@ -34,5 +36,6 @@ int	string_parser(char **string, va_list *arguments, char **dest)
 			(*string)++;
 		}
 	}
+	free(to_free);
 	return (1);
 }
