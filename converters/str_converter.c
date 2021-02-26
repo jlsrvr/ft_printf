@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 16:05:42 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:24:04 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			left_pad_fill(char **my_str, char *str,
 	(*my_str)[index] = 0;
 }
 
-char			*str_converter(t_specs specs, char *str)
+void			str_converter(t_specs specs, char *str, int *count)
 {
 	char	*my_str;
 	int		width;
@@ -76,5 +76,7 @@ char			*str_converter(t_specs specs, char *str)
 		right_pad_fill(&my_str, str, width, specs);
 	else
 		left_pad_fill(&my_str, str, padding, specs);
-	return (my_str);
+	*count += ft_strlen(my_str);
+	ft_putstr_fd(my_str, 1);
+	free(my_str);
 }
