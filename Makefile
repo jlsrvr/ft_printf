@@ -6,7 +6,7 @@
 #    By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/15 15:24:55 by jrivoire          #+#    #+#              #
-#    Updated: 2021/02/26 12:35:02 by jrivoire         ###   ########.fr        #
+#    Updated: 2021/02/26 18:47:31 by jrivoire         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS			= 	ft_printf.c \
 					utils/ft_atoi.c \
 					utils/ft_isdigit.c \
 					utils/ft_putstr_fd.c \
+					utils/ft_putchar_fd.c \
 					utils/ft_strchr.c \
 					utils/ft_strdup.c \
 					utils/ft_strjoin.c \
