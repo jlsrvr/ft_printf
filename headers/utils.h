@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 18:26:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 09:57:02 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:38:39 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int				ft_isdigit(int c);
 
 size_t			ft_strlen(char const *str);
 
+void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char *str, int fd);
 #endif
