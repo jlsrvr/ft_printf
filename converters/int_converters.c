@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:38:47 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 18:33:05 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:44:20 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	unsigned_converter(t_specs specs, int c, int *count)
 
 	base10 = "0123456789";
 	u_int = (unsigned int)c;
-	my_str = base_converter(specs, u_int, base_10);
+	my_str = base_converter(specs, u_int, base10);
 	*count += ft_strlen(my_str);
 	ft_putstr_fd(my_str, 1);
 	free(my_str);
@@ -49,7 +49,7 @@ void	signed_converter(t_specs specs, int c, int *count)
 	char			*my_str;
 
 	base10 = "0123456789";
-	my_str = base_converter(specs, u_int, base_10);
+	my_str = base_converter(specs, c, base10);
 	*count += ft_strlen(my_str);
 	ft_putstr_fd(my_str, 1);
 	free(my_str);

@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:06:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 16:40:19 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:45:55 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static char	*fill_start(t_specs specs, size_t len_num)
 	return (str);
 }
 
-char		*ptn_converter(t_specs specs, uintmax_t nbr)
+void		ptn_converter(t_specs specs, uintmax_t nbr, int *count)
 {
 	char			*my_string;
 	char			*temp_str;
@@ -101,16 +101,24 @@ char		*ptn_converter(t_specs specs, uintmax_t nbr)
 	else
 		temp_str = ft_uitoa_base(nbr, g_hexa_base);
 	if (!temp_str)
-		return (NULL);
+		return ;
 	my_string = fill_start(specs, ft_strlen(temp_str));
 	if (!my_string)
-		return (oneline_free(temp_str));
+	{
+		free(temp_str);
+		return ;
+	}
 	if (!string_writer(&my_string, temp_str))
-		return (NULL);
+		return ;
 	temp_str = fill_end(specs, ft_strlen(my_string));
 	if (!temp_str)
-		return (oneline_free(my_string));
+	{
+		free(my_string);
+		return ;
+	}
 	if (!string_writer(&my_string, temp_str))
-		return (NULL);
-	return (my_string);
+		return ;
+	*count += ft_strlen(my_string);
+	ft_putstr_fd(my_string, 1);
+	free(my_string);
 }

@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 18:24:04 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:46:30 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			str_converter(t_specs specs, char *str, int *count)
 	width = (padding < 0 ? len_str : specs.min_f_width);
 	my_str = malloc(sizeof(*my_str) * (width + 1));
 	if (!my_str)
-		return (NULL);
+		return ;
 	if (specs.right_pad)
 		right_pad_fill(&my_str, str, width, specs);
 	else
