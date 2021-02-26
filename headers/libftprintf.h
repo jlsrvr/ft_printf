@@ -44,6 +44,7 @@ int					is_format(char c);
 int					string_parser(char **string, va_list *arguments,
 									char **dest);
 int					string_writer(char **dest, char *to_add);
+int                 ft_printf(const char *string, ...);
 t_specs				conversion_parser(char **string, va_list *arguments);
 t_specs				initialize_specs(void);
 #endif

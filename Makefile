@@ -6,7 +6,7 @@
 #    By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/15 15:24:55 by jrivoire          #+#    #+#              #
-#    Updated: 2021/02/18 14:26:05 by jrivoire         ###   ########.fr        #
+#    Updated: 2021/02/26 09:52:41 by jrivoire         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,32 +16,48 @@ CC				=	gcc
 
 OBJS			=	$(SRCS:.c=.o)
 
-IDIR			=	headers/
+IDIR			=	-Iheaders/
 
-SRCS			= 	char/ft_isalnum.c \
+SRCS			= 	ft_printf.c \
+					string_parser.c \
+					conversion_parser.c \
+					converting_function.c \
+					string_writer.c \
+					\
+					converters/base_converter.c \
+					converters/char_converter.c \
+					converters/int_converters.c \
+					converters/ptn_converter.c \
+					converters/str_converter.c \
+					\
+					utils/printf_utils.c \
+					utils/ft_atoi.c \
+					utils/ft_isdigit.c \
+					utils/ft_putstr_fd.c \
+					utils/ft_strchr.c \
+					utils/ft_strdup.c \
+					utils/ft_strjoin.c \
+					utils/ft_strlen.c \
+					utils/ft_substr.c \
+					utils/ft_uitoa_base.c
 
 RM				=	rm -f
 
 FLAGS			=	-Wall -Wextra -Werror
 
 .c.o:
-	$(CC) $(FLAGS) -I$(IDIR) -c $< -o $(<:.c=.o)
+	$(CC) $(FLAGS) $(IDIR) -c $< -o $(<:.c=.o)
 
-$(NAME):	make_lib $(OBJS)
+$(NAME):	$(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 all:		$(NAME)
 
-make_lib:
-	@make libft.a -C ./libft
-
 clean:
 	$(RM) $(OBJS)
-	@make clean -C ./libft
 
 fclean: 	clean
 	$(RM) $(NAME)
-	@make fclean -C ./libft
 
 re:			fclean all
 
