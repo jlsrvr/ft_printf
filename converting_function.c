@@ -6,15 +6,15 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:21:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 17:57:56 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 18:10:03 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void (*g_converters[7])(t_specs specs, int number) = {char_converter,
-	signed_converter, signed_converter, unsigned_converter,
-	hexa_converter, hexa_converter};
+void (*g_converters[7])(t_specs specs, int number, int *count) = {
+	char_converter, signed_converter, signed_converter,
+	unsigned_converter, hexa_converter, hexa_converter};
 
 void	converting_function(t_specs specs, va_list *arguments, int *count)
 {
@@ -26,13 +26,13 @@ void	converting_function(t_specs specs, va_list *arguments, int *count)
 	if (f_index < 0)
 	{
 		if (specs.format == '%')
-			(*g_converters[0])(specs, '%');
+			(*g_converters[0])(specs, '%', count);
 		else if (specs.format == 'p')
-			ptn_converter(specs, va_arg(*arguments, uintmax_t));
+			ptn_converter(specs, va_arg(*arguments, uintmax_t), count);
 		else
-			str_converter(specs, va_arg(*arguments, char *));
+			str_converter(specs, va_arg(*arguments, char *), count);
 	}
 	else
-		(*g_converters[f_index])(specs, va_arg(*arguments, int));
+		(*g_converters[f_index])(specs, va_arg(*arguments, int), count);
 	return ;
 }
