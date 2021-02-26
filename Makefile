@@ -6,7 +6,7 @@
 #    By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/15 15:24:55 by jrivoire          #+#    #+#              #
-#    Updated: 2021/02/26 18:47:31 by jrivoire         ###   ########.fr        #
+#    Updated: 2021/02/26 19:21:46 by jrivoire         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ SRCS			= 	ft_printf.c \
 					string_parser.c \
 					conversion_parser.c \
 					converting_function.c \
-					string_writer.c \
 					\
 					converters/base_converter.c \
 					converters/char_converter.c \
@@ -40,7 +39,8 @@ SRCS			= 	ft_printf.c \
 					utils/ft_strjoin.c \
 					utils/ft_strlen.c \
 					utils/ft_substr.c \
-					utils/ft_uitoa_base.c
+					utils/ft_uitoa_base.c \
+					utils/string_writer.c
 
 RM				=	rm -f
 
