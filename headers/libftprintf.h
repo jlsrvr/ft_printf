@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:12:18 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 23:10:21 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/26 09:56:21 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "libft.h"
+# include "utils.h"
 
 typedef	struct		s_specs
 {
