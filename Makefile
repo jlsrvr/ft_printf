@@ -6,7 +6,7 @@
 #    By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/15 15:24:55 by jrivoire          #+#    #+#              #
-#    Updated: 2021/02/26 09:52:41 by jrivoire         ###   ########.fr        #
+#    Updated: 2021/02/26 12:35:02 by jrivoire         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC				=	gcc
 
 OBJS			=	$(SRCS:.c=.o)
 
-IDIR			=	-Iheaders/
+IDIR			=	headers/
 
 SRCS			= 	ft_printf.c \
 					string_parser.c \
@@ -46,7 +46,7 @@ RM				=	rm -f
 FLAGS			=	-Wall -Wextra -Werror
 
 .c.o:
-	$(CC) $(FLAGS) $(IDIR) -c $< -o $(<:.c=.o)
+	$(CC) $(FLAGS) -I$(IDIR) -c $< -o $(<:.c=.o)
 
 $(NAME):	$(OBJS)
 	ar rcs $(NAME) $(OBJS)
