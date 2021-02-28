@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 18:46:30 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:36:48 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			str_converter(t_specs specs, char *str, int *count)
 	int		len_str;
 
 	if (!str)
-		str = ft_strdup("(null)");
+		str = "(null)";
 	calculate_len_str(specs, str, &len_str);
 	padding = specs.min_f_width - len_str;
 	width = (padding < 0 ? len_str : specs.min_f_width);
