@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:12:18 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 18:32:15 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 09:51:12 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void				converting_function(t_specs specs, va_list *arguments,
 											int *count);
 int					is_format(char c);
 int					string_writer(char **dest, char *to_add);
-int                 ft_printf(const char *string, ...);
+int					ft_printf(const char *string, ...);
 t_specs				conversion_parser(char **string, va_list *arguments);
 t_specs				initialize_specs(void);
 void				char_converter(t_specs specs, int c, int *count);
