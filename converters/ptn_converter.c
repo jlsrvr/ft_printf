@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:06:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 19:29:35 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 10:02:46 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ static char	*fill_start_no_precision(t_specs specs, size_t len_num, char *str)
 		temp = malloc(sizeof(*temp) * (size + 1));
 		if (!temp)
 			return (oneline_free(str));
-		temp[size] = 0;
-		while (--size >= 0)
-			temp[size] = filler(specs);
+		fill_temp(&temp, size, filler(specs));
 		if (specs.zero_pad)
 		{
 			if (!string_writer(&str, temp))

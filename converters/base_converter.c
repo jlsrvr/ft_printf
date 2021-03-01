@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:24:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/25 16:28:30 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 10:01:38 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ char	*fill_start_no_precision(t_specs specs, size_t len_num, char *str)
 		temp = malloc(sizeof(*temp) * (size + 1));
 		if (!temp)
 			return (oneline_free(str));
-		temp[size] = 0;
-		while (--size >= 0)
-			temp[size] = filler(specs);
+		fill_temp(&temp, size, filler(specs));
 		if (specs.zero_pad)
 		{
 			if (!string_writer(&str, temp))
@@ -82,10 +80,10 @@ char	*fill_start(t_specs specs, size_t len_num, int neg)
 	char *str;
 
 	str = (neg ? ft_strdup("-") : ft_strdup(""));
-	if (specs.precision != -1)
-		str = fill_start_precision(specs, len_num, str);
-	else
+	if (specs.precision == -1)
 		str = fill_start_no_precision(specs, len_num, str);
+	else
+		str = fill_start_precision(specs, len_num, str);
 	return (str);
 }
 

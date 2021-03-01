@@ -6,7 +6,7 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/28 22:36:48 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 09:54:36 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 static void		calculate_len_str(t_specs specs, char *str, int *len_str)
 {
-	if (specs.precision != -1)
-		if (specs.precision < (int)ft_strlen(str))
-			*len_str = specs.precision;
-		else
-			*len_str = (int)ft_strlen(str);
+	if (specs.precision != -1 && specs.precision < (int)ft_strlen(str))
+		*len_str = specs.precision;
 	else
 		*len_str = (int)ft_strlen(str);
 }
