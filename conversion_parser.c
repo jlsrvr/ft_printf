@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:30:08 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/22 17:00:03 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:41:15 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int			parse_digit(char **string)
 {

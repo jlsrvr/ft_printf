@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/23 15:06:22 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/03/01 10:02:46 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:43:35 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 char		*g_hexa_base = "0123456789abcdef";
 

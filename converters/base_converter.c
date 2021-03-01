@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 15:24:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/03/01 10:01:38 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:43:01 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	fill_temp(char **temp, int size, char filler)
 {

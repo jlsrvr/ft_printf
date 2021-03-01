@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/03/01 09:54:36 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:43:12 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static void		calculate_len_str(t_specs specs, char *str, int *len_str)
 {

@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 23:26:29 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 18:41:50 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:41:06 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printf(const char *str, ...)
 {

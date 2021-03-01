@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 23:21:55 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 18:10:03 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:41:24 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void (*g_converters[7])(t_specs specs, int number, int *count) = {
 	char_converter, signed_converter, signed_converter,

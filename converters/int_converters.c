@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 19:38:47 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/03/01 10:08:28 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:43:56 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 char	*g_base_ten = "0123456789";
 

@@ -6,11 +6,11 @@
 /*   By: jrivoire <jrivoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 15:58:19 by jrivoire          #+#    #+#             */
-/*   Updated: 2021/02/26 19:13:11 by jrivoire         ###   ########.fr       */
+/*   Updated: 2021/03/01 12:43:23 by jrivoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static void		fill_my_char(char filler, int min_width, int *count)
 {
